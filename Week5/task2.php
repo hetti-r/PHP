@@ -73,9 +73,3 @@ Repeat password: <input name="password2" type="password" value="<?php echo $pass
 </body>
 
 </html>
-
-Tiedot
-
-    Julkaistu tiistai 6. helmikuuta 2024 - Iivonen, Joonas
-    Tehtävä on pakollinen
-
