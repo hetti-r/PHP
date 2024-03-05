@@ -1,10 +1,10 @@
 <?php
 // You will receive a GET parameter "id", which contains the book id.
 // Check the cookie (with the name of your choice). It's recommended to save the favorite'd book ids as an array turned into string. E.g.
-// $favorites = array(1, 4, 6);
-// $favorites_string = implode(",", $favorites); // "1,4,6"
-// setcookie("favorites", $favorites_string, time()+86400*30);
-// $favorites = explode(",", $_COOKIE["favorites"]);
+$favorites = books();
+$favorites_string = implode(",", $favorites); // "1,4,6"
+setcookie("favorites", $favorites_string, time()+86400*30);
+$favorites = explode(",", $_COOKIE["favorites"]);
 
 // If the cookie's not set or this id is not part of the cookie, add this id and send the cookie to the user.
 // If it's part of the cookie, remove it and send the new cookie to the user.
@@ -14,3 +14,16 @@
 
 // Redirect back to booksite.php. If you want to redirect to the exact page user came from, that's header("Location:" . $_SERVER["HTTP_REFERER"]);
 // And no, that's not a typo. It is HTTP_REFERER.
+if (isset($_COOKIE['favouriteCookie'])) {
+    $favorites = json_decode($_COOKIE['favouriteCookie'], true);
+}
+// check if the add form has been sent
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// if yes, add the new product to the $cart array
+if (isset($_POST['productname']) && isset($_POST['productamount'])) {
+    $cart[$_POST['productname']] = $_POST['productamount'];
+}
+// and send the updated cookie
+// let's use JSON again, so e.g. $json = json_encode($cart);
+setcookie('shoppingcart', json_encode($cart), time() + 60 * 60 * 24);
+}
