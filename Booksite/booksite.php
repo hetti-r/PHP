@@ -29,9 +29,9 @@
         <main>
             <?php
            
-                $json = file_get_contents("books.json");
-                $books = json_decode($json, true);
-                $favorites = explode(",", $_COOKIE["favorites"]);
+                $json = file_get_contents("books.json"); // gets json content
+                $books = json_decode($json, true); // Takes a JSON encoded string and converts it into a PHP value
+                $favorites = explode(",", $_COOKIE["favorites"]); //breaks cookie string into array
 
                 /*
 
@@ -90,14 +90,14 @@
 
 
             foreach ($books as $book) { //loop through all books
-                
-                $favorites = isset($_COOKIE['favorites']) ? explode(",", $_COOKIE['favorites']) : []; //if cookie is set -> breaks cookie string into array
+
+                $favorites = isset($_COOKIE['favorites']) ? explode(",", $_COOKIE['favorites']) : []; //if cookie is set -> breaks cookie string into array, otherwise empty array
                 $isFavorited = in_array($book['id'], $favorites); // check if book is favorited
             
                 // check if genre is set & matches book's genre or if genre is not set (=display all books)
                 if ((!isset($_GET['genre']) || $_GET['genre'] === $book['genre'])) {
                     echo '<section class="book">';
-                    echo '<a class="bookmark fa ' . ($isFavorited ? 'fa-star' : 'fa-star-o') . '" href="setfavorite.php?id=' . $book['id'] . '"></a>';
+                    echo '<a class="bookmark fa ' . ($isFavorited ? 'fa-star' : 'fa-star-o') . '" href="setfavorite.php?id=' . $book['id'] . '"></a>'; //checks if favorited (full/empty star), get book id
                     echo '<h3>' . $book['title'] . '</h3>';
                     echo '<p class="publishing-info">';
                     echo '<span class="author">' . $book['author'] . '</span>,';
@@ -109,18 +109,6 @@
                     echo '</section>';
                 }
             }
-     
-
-                // Use the HTML template below and a loop (+ conditional if the genre was given) to go through the books in file  
-
-                // You also need to check the cookies to figure out if the book is favorite or not and display correct symbol.
-                // If the book is in the favorite list, add the class "fa-star" to the a tag with "bookmark" class.
-                // If not, add the class "fa-star-o". These are Font Awesome classes that add a filled star and a star outline respectively.
-                // Also, make sure to set the id parameter for each book, so the setfavorite.php page gets the information which book to favorite/unfavorite.
-
-                // Read the file into array variable $books:
-
-
             ?>
            
 

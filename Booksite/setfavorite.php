@@ -40,35 +40,31 @@ if (in_array($id, $favorites) === false || !isset($_COOKIE['favorites'])) {
 header("Location: booksite.php");
 exit(); */
 
-// Check if the "id" parameter is set in the GET request
+// check if id is set in the GET request
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Check if the "favorites" cookie is set
+    // check if favorites cookie is set -> breaks cookie string into array, otherwise empty array
     $favorites = isset($_COOKIE['favorites']) ? explode(',', $_COOKIE['favorites']) : [];
 
-    // Check if the book ID is already in the favorites
+    // check if book id is in favorites (already)
     $isFavorited = in_array($id, $favorites);
 
-    // If the book is favorited, remove it; otherwise, add it
+    // if book is favorited-> remove it, otherwise add it
     if ($isFavorited) {
         $favorites = array_diff($favorites, [$id]);
     } else {
         $favorites[] = $id;
     }
 
-    // Convert the updated favorites array to a string and set the cookie
-    $favoritesString = implode(",", $favorites);
-    setcookie('favorites', $favoritesString, time() + 86400 * 30, '/');
+    $favoritesString = implode(",", $favorites); //converts updated favorites array back to string
+    setcookie('favorites', $favoritesString, time() + 86400 * 30, '/'); //sets cookies
 
-    // Redirect back to the referring page (in this case, booksite.php)
-    header("Location: booksite.php");
+
+    header("Location: booksite.php");  // redirects back to original page
     exit();
+
 } else {
-    // If "id" parameter is not set, handle the error or redirect to an error page
-    echo "Error: Book ID not specified.";
-    // Alternatively, redirect to an error page
-    // header("Location: error.php");
-    // exit();
+    echo "Error: Book ID not specified."; // if id is not set -> error message
 }
 
