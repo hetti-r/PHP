@@ -1,4 +1,32 @@
 <?php
+// check if id is set in the GET request
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    // check if favorites cookie is set -> breaks cookie string into array, otherwise empty array
+    $favorites = isset($_COOKIE['favorites']) ? explode(',', $_COOKIE['favorites']) : [];
+
+    // check if book id is in favorites (already)
+    $isFavorited = in_array($id, $favorites);
+
+    // if book is favorited-> remove it, otherwise add it
+    if ($isFavorited) {
+        $favorites = array_diff($favorites, [$id]);
+    } else {
+        $favorites[] = $id;
+    }
+
+    $favoritesString = implode(",", $favorites); //converts updated favorites array back to string
+    setcookie('favorites', $favoritesString, time() + 86400 * 30, '/'); //sets cookies
+
+
+    header("Location: booksite.php");  // redirects back to original page
+    exit();
+
+} else {
+    echo "Error: Book ID not specified."; // if id is not set -> error message
+}
+
 // You will receive a GET parameter "id", which contains the book id.
 // Check the cookie (with the name of your choice). It's recommended to save the favorite'd book ids as an array turned into string. E.g.
 //$favorites = array();
@@ -39,32 +67,3 @@ if (in_array($id, $favorites) === false || !isset($_COOKIE['favorites'])) {
 
 header("Location: booksite.php");
 exit(); */
-
-// check if id is set in the GET request
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    // check if favorites cookie is set -> breaks cookie string into array, otherwise empty array
-    $favorites = isset($_COOKIE['favorites']) ? explode(',', $_COOKIE['favorites']) : [];
-
-    // check if book id is in favorites (already)
-    $isFavorited = in_array($id, $favorites);
-
-    // if book is favorited-> remove it, otherwise add it
-    if ($isFavorited) {
-        $favorites = array_diff($favorites, [$id]);
-    } else {
-        $favorites[] = $id;
-    }
-
-    $favoritesString = implode(",", $favorites); //converts updated favorites array back to string
-    setcookie('favorites', $favoritesString, time() + 86400 * 30, '/'); //sets cookies
-
-
-    header("Location: booksite.php");  // redirects back to original page
-    exit();
-
-} else {
-    echo "Error: Book ID not specified."; // if id is not set -> error message
-}
-

@@ -28,12 +28,33 @@
         </nav>
         <main>
             <?php
-           
                 $json = file_get_contents("books.json"); // gets json content
                 $books = json_decode($json, true); // Takes a JSON encoded string and converts it into a PHP value
                 $favorites = explode(",", $_COOKIE["favorites"]); //breaks cookie string into array
 
-                /*
+            foreach ($books as $book) { //loop through all books
+
+                $favorites = isset($_COOKIE['favorites']) ? explode(",", $_COOKIE['favorites']) : []; //if cookie is set -> breaks cookie string into array, otherwise empty array
+                $isFavorited = in_array($book['id'], $favorites); // check if book is favorited
+            
+                // check if genre is set & matches book's genre or if genre is not set (=display all books)
+                if ((!isset($_GET['genre']) || $_GET['genre'] === $book['genre'])) {
+                    echo '<section class="book">';
+                    echo '<a class="bookmark fa ' . ($isFavorited ? 'fa-star' : 'fa-star-o') . '" href="setfavorite.php?id=' . $book['id'] . '"></a>'; //checks if favorited (full/empty star), get book id
+                    echo '<h3>' . $book['title'] . '</h3>';
+                    echo '<p class="publishing-info">';
+                    echo '<span class="author">' . $book['author'] . '</span>,';
+                    echo '<span class="year">' . $book['publishing_year'] . '</span>';
+                    echo '</p>';
+                    echo '<p class="description">';
+                    echo $book['description'];
+                    echo '</p>';
+                    echo '</section>';
+                }
+            }
+
+
+                /* OLD CODE
 
                 foreach ($books as $book) {
                 if (in_array($book["id"], $favorites)) {
@@ -89,26 +110,6 @@
             */
 
 
-            foreach ($books as $book) { //loop through all books
-
-                $favorites = isset($_COOKIE['favorites']) ? explode(",", $_COOKIE['favorites']) : []; //if cookie is set -> breaks cookie string into array, otherwise empty array
-                $isFavorited = in_array($book['id'], $favorites); // check if book is favorited
-            
-                // check if genre is set & matches book's genre or if genre is not set (=display all books)
-                if ((!isset($_GET['genre']) || $_GET['genre'] === $book['genre'])) {
-                    echo '<section class="book">';
-                    echo '<a class="bookmark fa ' . ($isFavorited ? 'fa-star' : 'fa-star-o') . '" href="setfavorite.php?id=' . $book['id'] . '"></a>'; //checks if favorited (full/empty star), get book id
-                    echo '<h3>' . $book['title'] . '</h3>';
-                    echo '<p class="publishing-info">';
-                    echo '<span class="author">' . $book['author'] . '</span>,';
-                    echo '<span class="year">' . $book['publishing_year'] . '</span>';
-                    echo '</p>';
-                    echo '<p class="description">';
-                    echo $book['description'];
-                    echo '</p>';
-                    echo '</section>';
-                }
-            }
             ?>
            
 
