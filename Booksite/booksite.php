@@ -28,22 +28,28 @@
         </nav>
         <main>
             <?php
+           
                 $json = file_get_contents("books.json");
                 $books = json_decode($json, true);
+                $favorites = explode(",", $_COOKIE["favorites"]);
 
-                if (true) {
-                    $icon = "bookmark fa fa-star"
+                /*
+
+                foreach ($books as $book) {
+                if (in_array($book["id"], $favorites)) {
+                    $icon = "bookmark fa fa-star";
                 }
-
                 else {
-                    $icon = "bookmark fa fa-star-o"
+                    $icon = "bookmark fa fa-star-o";
                 }
-
+            } */
 
 
                 // Here you should display the books of the given genre (GET parameter "genre"). Check the links above for parameter values.
                 // If the parameter is not set, display all books.
-                if (isset($_GET['genre'])) {
+
+
+                /* if (isset($_GET['genre'])) {
                         foreach ($books as $book) {
                         if ($book['genre'] === ($_GET['genre']))
                                 { 
@@ -80,7 +86,29 @@
                     </section>
                     <?php }
             }
+            */
 
+
+            foreach ($books as $book) { //loop through all books
+                
+                $favorites = isset($_COOKIE['favorites']) ? explode(",", $_COOKIE['favorites']) : []; //if cookie is set -> breaks cookie string into array
+                $isFavorited = in_array($book['id'], $favorites); // check if book is favorited
+            
+                // check if genre is set & matches book's genre or if genre is not set (=display all books)
+                if ((!isset($_GET['genre']) || $_GET['genre'] === $book['genre'])) {
+                    echo '<section class="book">';
+                    echo '<a class="bookmark fa ' . ($isFavorited ? 'fa-star' : 'fa-star-o') . '" href="setfavorite.php?id=' . $book['id'] . '"></a>';
+                    echo '<h3>' . $book['title'] . '</h3>';
+                    echo '<p class="publishing-info">';
+                    echo '<span class="author">' . $book['author'] . '</span>,';
+                    echo '<span class="year">' . $book['publishing_year'] . '</span>';
+                    echo '</p>';
+                    echo '<p class="description">';
+                    echo $book['description'];
+                    echo '</p>';
+                    echo '</section>';
+                }
+            }
      
 
                 // Use the HTML template below and a loop (+ conditional if the genre was given) to go through the books in file  
