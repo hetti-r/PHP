@@ -54,7 +54,7 @@
             }
 
 
-                /* OLD CODE
+                /* FIRST TRY
 
                 foreach ($books as $book) {
                 if (in_array($book["id"], $favorites)) {

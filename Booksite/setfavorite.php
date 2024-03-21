@@ -27,6 +27,7 @@ if (isset($_GET['id'])) {
     echo "Error: Book ID not specified."; // if id is not set -> error message
 }
 
+//FIRST TRY
 // You will receive a GET parameter "id", which contains the book id.
 // Check the cookie (with the name of your choice). It's recommended to save the favorite'd book ids as an array turned into string. E.g.
 //$favorites = array();
