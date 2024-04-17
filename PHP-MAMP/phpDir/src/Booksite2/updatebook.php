@@ -3,32 +3,32 @@
 $query = "SELECT * FROM books";
 $result = mysqli_query($conn, $query);
 if (!$result) {
-  die('Query failed');
+    die('Query failed');
 }
 ?>
 
 <?php
 if (isset($_POST['submit'])) {
-  $id = $_POST['id'];
-  $title = $_POST['title'];
-  $author = $_POST['author'];
-  $year = $_POST['year'];
-  $genre = $_POST['genre'];
-  $description = $_POST['description'];
+    $id = $_POST['id'];
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+    $genre = $_POST['genre'];
+    $description = $_POST['description'];
 
-  //Update the records in db
-  $query = "UPDATE books SET ";
-  $query .= "title = '$title', ";
-  $query .= "author= '$author' ";
-  $query .= "year= '$year' ";
-  $query .= "genre= '$genre' ";
-  $query .= "description= '$description ";
-  $query .= "WHERE id = $id";
+    //Update the records in db
+    $query = "UPDATE books SET ";
+    $query .= "title = '$title', ";
+    $query .= "author= '$author' ";
+    $query .= "year= '$year' ";
+    $query .= "genre= '$genre' ";
+    $query .= "description= '$description ";
+    $query .= "WHERE id = $id";
 
-  $result = mysqli_query($conn, $query);
-  if (!$result) {
-    die("Update query failed" . mysqli_error($conn));
-  }
+    $result = mysqli_query($conn, $query);
+    if (!$result) {
+        die("Update query failed" . mysqli_error($conn));
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -42,17 +42,6 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <div id="container">
-        <header>
-            <h1>Your Favorite Books</h1>
-        </header>
-        <nav id="main-navi">
-        <ul>
-                <li><a href="addbook.php">Add a New Book</a></li>
-                <li><a href="booksite.php">Book List</a></li>
-            </ul>
-        </nav>
-        <main>
-            <h2>Edit Book</h2>
 
   <form action="update.php" method="post">
 
@@ -88,11 +77,11 @@ if (isset($_POST['submit'])) {
   </p>
     <select name="id" id="">
       <?php
-      while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row['id'];
-        echo "<option value='$id'>$id</option>";
-      }
-      ?>
+while ($row = mysqli_fetch_assoc($result)) {
+    $id = $row['id'];
+    echo "<option value='$id'>$id</option>";
+}
+?>
     </select>
     <input type="submit" name="submit" value="UPDATE">
 

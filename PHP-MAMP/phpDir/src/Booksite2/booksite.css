@@ -1,6 +1,8 @@
+
+
 body {
     background-color: #edd9dd;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 a {
@@ -19,6 +21,8 @@ h1 {
     border: 2px solid #ba8482;
     border-radius: 10px;
     background-color: #dd9eae;
+    font-size: 10px;
+    
 }
 
 header {

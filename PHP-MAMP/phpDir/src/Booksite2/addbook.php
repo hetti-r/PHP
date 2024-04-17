@@ -1,44 +1,44 @@
 <?php
 if (isset($_POST['submit'])) {
-  //echo "yes received the data";
-  $title = $_POST['title'];
-  $author = $_POST['author'];
-  $year = $_POST['year'];
-  $genre = $_POST['genre'];
-  $description = $_POST['description'];
-  echo $title . " " . $author;
+    //echo "yes received the data";
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+    $genre = $_POST['genre'];
+    $description = $_POST['description'];
+    echo $title . " " . $author;
 
-  //Validate the form
-  if ($title && $author) {
-    echo $user . " " . $pass;
-  } else {
-    echo "title and author fields cannot be blank";
-  }
+    //Validate the form
+    if ($title && $author) {
+        echo $user . " " . $pass;
+    } else {
+        echo "title and author fields cannot be blank";
+    }
 
-  $host = 'db';
-  // Database user name
-  $dbname = 'booksite';
-  $dbuser = 'root';
-  //database user password
-  $dbpass = 'lionPass';
+    $host = 'db';
+    // Database user name
+    $dbname = 'booksite';
+    $dbuser = 'root';
+    //database user password
+    $dbpass = 'lionPass';
 
-  // Check the MySQL connection status
-  $conn = new mysqli($host, $dbuser, $dbpass, $dbname);
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  } else {
-    echo "Connected to MySQL server successfully!";
-  }
+    // Check the MySQL connection status
+    $conn = new mysqli($host, $dbuser, $dbpass, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        echo "Connected to MySQL server successfully!";
+    }
 
-  // Create the records inside db
-  $query = "INSERT INTO books(title,author,year,genre,description)";
-  $query .= "VALUES ('$title','$author','$year','$genre','$description')";
+    // Create the records inside db
+    $query = "INSERT INTO books(title,author,year,genre,description)";
+    $query .= "VALUES ('$title','$author','$year','$genre','$description')";
 
-  $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query);
 
-  if (!$result) {
-    die('Query insertion failed');
-  }
+    if (!$result) {
+        die('Query insertion failed');
+    }
 }
 
 ?>
@@ -53,17 +53,6 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <div id="container">
-        <header>
-            <h1>Your Favorite Books</h1>
-        </header>
-        <nav id="main-navi">
-        <ul>
-                <li><a href="addbook.php">Add a New Book</a></li>
-                <li><a href="booksite.php">Book List</a></li>
-            </ul>
-        </nav>
-        <main>
-            <h2>Add a New Book</h2>
             <form action="addbook.php" method="post">
                 <p>
                     <label for="title">Title:</label>
@@ -98,6 +87,6 @@ if (isset($_POST['submit'])) {
                 <p><input type="submit" name="submit" value="Add Book"></p>
             </form>
         </main>
-    </div>    
+    </div>
 </body>
 </html>
