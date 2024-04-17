@@ -3,7 +3,7 @@ if (isset($_POST['submit'])) {
     //echo "yes received the data";
     $title = $_POST['title'];
     $author = $_POST['author'];
-    $year = $_POST['year'];
+    $publishing_year = $_POST['publishing_year'];
     $genre = $_POST['genre'];
     $description = $_POST['description'];
     echo $title . " " . $author;
@@ -31,8 +31,8 @@ if (isset($_POST['submit'])) {
     }
 
     // Create the records inside db
-    $query = "INSERT INTO books(title,author,year,genre,description)";
-    $query .= "VALUES ('$title','$author','$year','$genre','$description')";
+    $query = "INSERT INTO books(title,author,publishing_year,genre,description)";
+    $query .= "VALUES ('$title','$author','$publishing_year','$genre','$description')";
 
     $result = mysqli_query($conn, $query);
 
@@ -63,8 +63,8 @@ if (isset($_POST['submit'])) {
                     <input type="text" id="author" name="author">
                 </p>
                 <p>
-                    <label for="year">Year:</label>
-                    <input type="number" id="year" name="year">
+                    <label for="publishing_year">Year:</label>
+                    <input type="number" id="publishing_year" name="publishing_year">
                 </p>
                 <p>
                     <label for="genre">Genre:</label>

@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $title = $_POST['title'];
     $author = $_POST['author'];
-    $year = $_POST['year'];
+    $publishing_year = $_POST['publishing_year'];
     $genre = $_POST['genre'];
     $description = $_POST['description'];
 
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     $query = "UPDATE books SET ";
     $query .= "title = '$title', ";
     $query .= "author= '$author' ";
-    $query .= "year= '$year' ";
+    $query .= "publishing_year= '$publishing_year' ";
     $query .= "genre= '$genre' ";
     $query .= "description= '$description ";
     $query .= "WHERE id = $id";
@@ -54,8 +54,8 @@ if (isset($_POST['submit'])) {
       <input type="text" id="author" name="author">
   </p>
   <p>
-      <label for="year">Year:</label>
-      <input type="number" id="year" name="year">
+      <label for="publishing_year">Year:</label>
+      <input type="number" id="publishing_year" name="publishing_year">
   </p>
   <p>
       <label for="genre">Genre:</label>

@@ -17,13 +17,9 @@ require_once 'login.php';
         <header>
             <h1>Your Favorite Books</h1>
         </header>
-        <nav id="main-navi">
-            <ul>
-                <li><a href="booksite.php">Home</a></li>
-
-            </ul>
-        </nav>
 <main>
+    <div id="addBook">
+    <h2>Add A New Book</h2>
     <form action="booksite.php" method="post">
       <div>
         <label for="title">Title:</label>
@@ -34,8 +30,8 @@ require_once 'login.php';
         <input type="text" id="author" name="author">
       </div>
       <div>
-        <label for="year">Year:</label>
-        <input type="text" id="year" name="year">
+        <label for="publishing_year">Year:</label>
+        <input type="number" id="publishing_year" name="publishing_year">
       </div>
       <div>
       <label for="genre">Genre:</label>
@@ -57,6 +53,7 @@ require_once 'login.php';
       </div>
       <input type="submit" name="submit" value="Submit">
     </form>
+    </div>
 
     <table class="default-table">
       <thead>
@@ -77,7 +74,7 @@ require_once 'login.php';
           <td><?=$row["id"]?></td>
           <td><?=htmlspecialchars($row["title"])?></td>
           <td><?=htmlspecialchars($row["author"])?></td>
-          <td><?=$row["year"]?></td>
+          <td><?=$row["publishing_year"]?></td>
           <td><?=htmlspecialchars($row["genre"])?></td>
           <td><?=htmlspecialchars($row["description"])?></td>
           <td class='actions'>

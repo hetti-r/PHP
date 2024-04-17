@@ -3,7 +3,7 @@ if (isset($_POST['submit'])) {
   $id = $_POST['id'];
   $title = $_POST['title'];
   $author = $_POST['author'];
-  $year = $_POST['year'];
+  $publishing_year = $_POST['publishing_year'];
   $genre = $_POST['genre'];
   $description = $_POST['description'];
 }
