@@ -51,7 +51,7 @@ if(isset($_POST['submit']))
 ?>
 
 <form method="post">
-<table">
+<table>
     <tr>
         <td>Select Conversion</td>
         <td><select name="con">
