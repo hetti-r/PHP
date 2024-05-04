@@ -1,0 +1,9 @@
+{
+    "require-dev": {
+        "symfony/maker-bundle": "^1.59"
+    },
+    "require": {
+        "symfony/twig-bundle": "^7.0",
+        "doctrine/orm": "^3.1"
+    }
+}

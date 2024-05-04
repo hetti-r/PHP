@@ -1,6 +1,7 @@
 <?php
 
-function shortenURL($longUrl, $accessToken) {
+function shortenURL($longUrl, $accessToken)
+{
     $url = 'https://unelma.io/api/v1/link';
     $data = [
         "type" => "direct",
@@ -10,7 +11,7 @@ function shortenURL($longUrl, $accessToken) {
         "activates_at" => "2024-03-25",
         "utm" => "utm_source=google&utm_medium=banner",
         "domain_id" => null,
-        "long_url" => $longUrl
+        "long_url" => $longUrl,
     ];
 
     $ch = curl_init($url);
@@ -38,15 +39,6 @@ function shortenURL($longUrl, $accessToken) {
     curl_close($ch);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $accessToken = '22|Dcph5XyQtywirg54cB53BT4kVMks4dkvnMoYljRO7221a570'; 
-
-    $longUrl = $_POST['longURL'];
-    $shortUrl = shortenURL($longUrl, $accessToken);
-
-    echo 'Here is the shortened URL: <a href="' . $shortUrl . '">' . $shortUrl . '</a>';
-}
-
 ?>
 <html>
 <html lang="en">
@@ -59,14 +51,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
     <h1>Url Shortener</h1>
-    
+
 <form method="post">
         <label for="longUrl">Enter URL: </label>
         <input type="text" name="longURL" id="longURL" autocomplete="off">
         <button class="button-17" name="Shorten" value="Shorten">Shorten</button>
 </form>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $accessToken = '22|Dcph5XyQtywirg54cB53BT4kVMks4dkvnMoYljRO7221a570';
+
+    $longUrl = $_POST['longURL'];
+    $shortUrl = shortenURL($longUrl, $accessToken);
+
+    echo 'The shortened URL: <a href="' . $shortUrl . '">' . $shortUrl . '</a>';
+}?>
     </div>
 </body>
 </html>
-
-

@@ -22,6 +22,15 @@ h1 {
 
 }
 
+input {
+  border-radius: 10px;
+  margin: 0.2rem;
+  padding: 0.3rem;
+  margin-left: 1rem;
+  border-style:solid;
+  
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -29,6 +38,7 @@ h1 {
     align-self: center;
     flex-direction: column;
     margin-top: 12rem;
+    text-align: start;
 }
 
 
@@ -38,9 +48,9 @@ h1 {
   background-color: #dcedf7;
   border-radius: 28px;
   border-style: none;
-  box-shadow: rgba(0, 0, 0, 0.074) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-shadow: rgba(117, 116, 143, 0.048) 0 3px 5px -1px,rgba(0, 0, 0, 0.055) 0 6px 10px 0,rgba(0, 0, 0, 0.065) 0 1px 18px 0;
   box-sizing: border-box;
-  color: #3c4043;
+  color: #7799b5;
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
@@ -54,7 +64,7 @@ h1 {
   line-height: normal;
   max-width: 100%;
   overflow: visible;
-  margin-left: 3rem;
+  margin-left: 2rem;
   margin-top: 1rem;
   padding: 17px;
   position: relative;
