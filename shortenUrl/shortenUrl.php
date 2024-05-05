@@ -1,4 +1,8 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/');
+$dotenv->load();
 
 function shortenURL($longUrl, $accessToken)
 {
@@ -59,7 +63,7 @@ function shortenURL($longUrl, $accessToken)
 </form>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $accessToken = '22|Dcph5XyQtywirg54cB53BT4kVMks4dkvnMoYljRO7221a570';
+    $accessToken = $_ENV['API_KEY'];
 
     $longUrl = $_POST['longURL'];
     $shortUrl = shortenURL($longUrl, $accessToken);
