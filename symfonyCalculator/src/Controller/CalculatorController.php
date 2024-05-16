@@ -14,7 +14,7 @@ class CalculatorController extends AbstractController
     #[Route('/', name: "calculator")]
     public function index(Request $request, LoggerInterface $logger): Response//use logger to log and show result messages
     {
-        $logger->info('I just got the logger');
+        $logger->info('I have the logger');
         $logger->error('An error occurred');
 
         //get input names to variables
@@ -25,28 +25,31 @@ class CalculatorController extends AbstractController
         $message = '';
         $result = null;
 
-        if ($number1 !== null && $number2 !== null) { //check that both numbers are given
+        if ($number1 !== '' && $number2 !== '') { //check that both numbers are given and are not strings
             switch ($calculation) {
                 case '+':
-                    htmlspecialchars($result = $number1 + $number2);
+                    $result = $number1 + $number2;
                     break;
                 case '-':
-                    htmlspecialchars($result = $number1 - $number2);
+                    $result = $number1 - $number2;
                     break;
                 case '*':
-                    htmlspecialchars($result = $number1 * $number2);
+                    $result = $number1 * $number2;
                     break;
                 case '/':
                     if ($number2 == 0) { //check if number is zero
                         $message = 'Can not divide by zero.';
                     } else {
-                        htmlspecialchars($result = $number1 / $number2);
+                        $result = $number1 / $number2;
                     }
                     break;
                 default:
                     $message = 'Error. Try again.';
                     break;
             }
+
+        } else {
+            $message = 'You need to give two numbers.';
         }
 
         return $this->render('calculator/index.html.twig', [
